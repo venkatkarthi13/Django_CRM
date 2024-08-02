@@ -18,7 +18,7 @@ def home(request):
             messages.success(request,"You have been logged in successfully")
             return redirect("home")
         else:
-            messages.success(request, "There was an error occurred, Please Try again...")
+            messages.success(request, "Invalid Credentials, Please Try again...")
             return redirect("home")
     else:
         return render(request, "home.html",{'records':records})
