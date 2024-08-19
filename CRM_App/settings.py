@@ -1,9 +1,9 @@
 
-
+from dotenv import load_dotenv
 from pathlib import Path
 import os
-import dj_database_url
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -68,26 +68,31 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+# DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('django-crm-project-za4a.onrender.com', 'localhost,127.0.0.1').split(',')
 
 
-# Database settings
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'CRM_Apk',
-#         'USER':'venkat',
-#         'PASSWORD':'venkat98',
-#         'HOST':'localhost',
-#         'PORT':'5432',
+#         'ENGINE': 'django.db.backends.postgresql',  # Or another database backend if you're using something else
+#         'NAME': os.getenv('CRM_Apk'),
+#         'USER': os.getenv('venkat'),
+#         'PASSWORD': os.getenv('venkat98'),
+#         'HOST': os.getenv('localhost'),
+#         'PORT': os.getenv('5432'),
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'CRM_Apk',
+        'USER':'venkat',
+        'PASSWORD':'venkat98',
+        'HOST':'localhost',
+        'PORT':'5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
