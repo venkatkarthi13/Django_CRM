@@ -68,9 +68,9 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('*', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.environ.get('django-crm-project-za4a.onrender.com', 'localhost,127.0.0.1').split(',')
 
 
 # Database settings
