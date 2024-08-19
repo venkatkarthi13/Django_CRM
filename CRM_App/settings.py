@@ -152,7 +152,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = True
 
 # Allowed Hosts
 ALLOWED_HOSTS = ['django-crm-project-za4a.onrender.com', 'localhost', '127.0.0.1','*']
