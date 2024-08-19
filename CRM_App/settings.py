@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,7 +17,7 @@ SECRET_KEY = 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['django-crud-crm.onrender.com','*','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -33,6 +34,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -65,31 +67,23 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CRM_Apk',
-        'USER':'venkat',
-        'PASSWORD':'venkat98',
-        'HOST':'localhost',
-        'PORT':'5432',
-    }
-}
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('CRM_Apk'),
-#         'USER': os.getenv('venkat'),
-#         'PASSWORD': os.getenv('venkat98'),
-#         'HOST': os.getenv('localhost'),
-#         'PORT': '5432',
+#         'NAME': 'CRM_Apk',
+#         'USER':'venkat',
+#         'PASSWORD':'venkat98',
+#         'HOST':'localhost',
+#         'PORT':'5432',
 #     }
 # }
 
-# DATABASES = {
-#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-# }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default=f'postgresql://{os.getenv("venkat")}:{os.getenv("venkat98")}@{os.getenv("localhost")}/{os.getenv("CRM_Apk")}'
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -125,8 +119,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
