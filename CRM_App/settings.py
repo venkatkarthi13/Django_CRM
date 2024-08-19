@@ -56,7 +56,9 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['evolutionary-guenna-venkatprojects-7348a709.koyeb.app', 'localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://evolutionary-guenna-venkatprojects-7348a709.koyeb.app']
+
 
 DATABASES = {
     'default': {
