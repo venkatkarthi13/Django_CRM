@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+.env
+.venv/
+.mypy_cache/
+.coverage
+*.cover
+.hypothesis/
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+.DS_Store
