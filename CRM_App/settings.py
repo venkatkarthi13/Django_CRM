@@ -155,7 +155,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # Allowed Hosts
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = ['django-crm-project-za4a.onrender.com', 'localhost', '127.0.0.1','*']
+
 
 # Application definition
 INSTALLED_APPS = [
