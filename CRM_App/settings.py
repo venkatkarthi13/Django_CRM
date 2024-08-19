@@ -65,31 +65,31 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'CRM_Apk',
-#         'USER':'venkat',
-#         'PASSWORD':'venkat98',
-#         'HOST':'localhost',
-#         'PORT':'5432',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('CRM_Apk'),
-        'USER': os.getenv('venkat'),
-        'PASSWORD': os.getenv('venkat98'),
-        'HOST': os.getenv('localhost'),
-        'PORT': '5432',
+        'NAME': 'CRM_Apk',
+        'USER':'venkat',
+        'PASSWORD':'venkat98',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
 
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('CRM_Apk'),
+#         'USER': os.getenv('venkat'),
+#         'PASSWORD': os.getenv('venkat98'),
+#         'HOST': os.getenv('localhost'),
+#         'PORT': '5432',
+#     }
+# }
+
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
