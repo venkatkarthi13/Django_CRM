@@ -1,1 +1,2 @@
-web: gunicorn CRM_App.wsgi --log-file -
+web: gunicorn CRM_App.wsgi:application --workers 3
+
