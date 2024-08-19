@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,12 +12,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&'
+# SECRET_KEY = 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&'
+
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['django-crud-crm.onrender.com','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -66,18 +68,15 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+ALLOWED_HOSTS = os.environ.get('*', 'localhost,127.0.0.1').split(',')
+
+
+# Database settings
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
-        'USER': os.getenv('DB_USER', 'venkat'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
-        'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
-
-
 
 # DATABASES = {
 #     'default': {
@@ -87,19 +86,6 @@ DATABASES = {
 #         'PASSWORD':'venkat98',
 #         'HOST':'localhost',
 #         'PORT':'5432',
-#     }
-# }
-
-# import os
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
-#         'USER': os.getenv('DB_USER', 'venkat'),
-#         'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
-#         'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
-#         'PORT': os.getenv('DB_PORT', '5432'),
 #     }
 # }
 
@@ -139,7 +125,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
