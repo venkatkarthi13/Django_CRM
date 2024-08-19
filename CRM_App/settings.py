@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
         'USER': os.getenv('DB_USER', 'venkat'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
