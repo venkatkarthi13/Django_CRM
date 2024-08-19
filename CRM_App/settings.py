@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['django-crud-crm.onrender.com','127.0.0.1', 'localhost']
 
@@ -66,33 +66,16 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# Check if the environment variable `USE_LOCAL_DB` is set to True
-USE_LOCAL_DB = os.getenv('USE_LOCAL_DB', 'True') == 'True'
-
-if USE_LOCAL_DB:
-    # Local database settings
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'CRM_Apk',
-            'USER': 'venkat',
-            'PASSWORD': 'venkat98',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
+        'USER': os.getenv('DB_USER', 'venkat'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
+        'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
-else:
-    # Production database settings using environment variables
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
-            'USER': os.getenv('DB_USER', 'venkat'),
-            'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
-            'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
-            'PORT': os.getenv('DB_PORT', '5432'),
-        }
-    }
+}
 
 
 
