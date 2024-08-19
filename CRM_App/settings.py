@@ -66,6 +66,36 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Check if the environment variable `USE_LOCAL_DB` is set to True
+USE_LOCAL_DB = os.getenv('USE_LOCAL_DB', 'True') == 'True'
+
+if USE_LOCAL_DB:
+    # Local database settings
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'CRM_Apk',
+            'USER': 'venkat',
+            'PASSWORD': 'venkat98',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+else:
+    # Production database settings using environment variables
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
+            'USER': os.getenv('DB_USER', 'venkat'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
+            'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+        }
+    }
+
+
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -77,18 +107,18 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 #     }
 # }
 
-import os
+# import os
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
-        'USER': os.getenv('DB_USER', 'venkat'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
-        'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME', 'CRM_Apk'),
+#         'USER': os.getenv('DB_USER', 'venkat'),
+#         'PASSWORD': os.getenv('DB_PASSWORD', 'venkat98'),
+#         'HOST': os.getenv('DB_HOST', 'django-crud-crm.onrender.com'),
+#         'PORT': os.getenv('DB_PORT', '5432'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
