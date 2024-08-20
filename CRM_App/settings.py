@@ -85,7 +85,7 @@ DATABASES = {
 
 # Override with DATABASE_URL if available (usually for production)
 if 'DATABASE_URL' in os.environ:
-    DATABASES['default'] = dj_database_url.config(default=os.getenv('postgres://venkat:venkat98@localhost:5432/CRM_Apk'))
+    DATABASES['default'] = dj_database_url.config(default=os.getenv('venkat:venkat98@localhost:5432/CRM_Apk'))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
