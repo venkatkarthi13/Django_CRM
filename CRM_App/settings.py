@@ -57,23 +57,23 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-# ALLOWED_HOSTS = os.getenv('django-crm-project-zqtl.onrender.com/', 'localhost','').split(',')
-# ALLOWED_HOSTS = os.getenv('django-crm-project-zqtl.onrender.com/', 'localhost',).split(',')
+
 ALLOWED_HOSTS = [
     'django-crm-project-zqtl.onrender.com',  # Your Render app domain
     'localhost',
-    '127.0.0.1'
-]
-
-
-
+    '127.0.0.1']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'CRM_Apk',
+        'USER':'venkat',
+        'PASSWORD':'venkat98',
+        'HOST':'localhost',
+        'PORT':'5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
