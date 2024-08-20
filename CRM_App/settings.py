@@ -57,7 +57,15 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-ALLOWED_HOSTS = ['django-crm-project-zqtl.onrender.com', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = os.getenv('django-crm-project-zqtl.onrender.com/', 'localhost','').split(',')
+# ALLOWED_HOSTS = os.getenv('django-crm-project-zqtl.onrender.com/', 'localhost',).split(',')
+ALLOWED_HOSTS = [
+    'django-crm-project-zqtl.onrender.com',  # Your Render app domain
+    'localhost',
+    '127.0.0.1'
+]
+
+
 
 
 DATABASES = {
