@@ -4,8 +4,6 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -13,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 INSTALLED_APPS = [
@@ -28,6 +26,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,8 +57,7 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-ALLOWED_HOSTS = ['evolutionary-guenna-venkatprojects-7348a709.koyeb.app', 'localhost', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://evolutionary-guenna-venkatprojects-7348a709.koyeb.app']
+ALLOWED_HOSTS = ['django-crm-project-zqtl.onrender.com', 'localhost', '127.0.0.1']
 
 
 DATABASES = {
