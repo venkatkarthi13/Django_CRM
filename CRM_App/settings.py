@@ -1,7 +1,7 @@
 
 import os
 from pathlib import Path
-import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -59,25 +59,19 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-ALLOWED_HOSTS = [
-    'django-crm-project-zqtl.onrender.com',  # Your Render app domain
-    'localhost',
-    '127.0.0.1']
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'CRM_Apk',
-#         'USER':'venkat',
-#         'PASSWORD':'venkat98',
-#         'HOST':'localhost',
-#         'PORT':'5432',
-#     }
-# }
+ALLOWED_HOSTS = ['evolutionary-guenna-venkatprojects-7348a709.koyeb.app/','django-crm-project-zqtl.onrender.com','localhost','127.0.0.1']
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgresql://venkat:venkat98@localhost:5432/CRM_Apk')
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'CRM_Apk',
+        'USER':'venkat',
+        'PASSWORD':'venkat98',
+        'HOST':'localhost',
+        'PORT':'5432',
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
