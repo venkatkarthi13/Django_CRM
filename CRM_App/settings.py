@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qrsnt45lo%+d0^m$ld41pauqk=irkz()5wc!hoy273=rhkv)!&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG=True
+DEBUG=False
 
 # Application definition
 INSTALLED_APPS = [
@@ -59,19 +59,29 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-ALLOWED_HOSTS = ['evolutionary-guenna-venkatprojects-7348a709.koyeb.app/','django-crm-project-zqtl.onrender.com','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['evolutionary-guenna-venkatprojects-7348a709.koyeb.app','django-crm-project-zqtl.onrender.com','localhost','127.0.0.1']
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'CRM_Apk',
+#         'USER':'venkat',
+#         'PASSWORD':'venkat98',
+#         'HOST':'localhost',
+#         'PORT':'5432',
+#     }
+# }
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CRM_Apk',
-        'USER':'venkat',
-        'PASSWORD':'venkat98',
-        'HOST':'localhost',
-        'PORT':'5432',
+        'NAME': os.getenv('DATABASE_NAME', 'CRM_Apk'),
+        'USER': os.getenv('DATABASE_USER', 'venkat'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'venkat98'),
+        'HOST': os.getenv('DATABASE_HOST', 'localhost'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
