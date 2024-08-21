@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'style.css' %}">
 <div class="container mt-4">
 
     {% if user.is_authenticated %}
@@ -24,23 +23,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% if records %}
-                        {% for record in records %}
-                        <tr>
-                            <td><a href="{% url 'record' record.id %}" style="color:#20c997">{{ record.id }}</a></td>
-                            <td class="text-truncate" style="max-width: 100px;">{{ record.first_name }}</td>
-                            <td class="text-truncate" style="max-width: 100px;">{{ record.last_name }}</td>
-                            <td class="text-truncate" style="max-width: 150px;">{{ record.email }}</td>
-                            <td class="text-truncate" style="max-width: 100px;">{{ record.phone }}</td>
-                            <td class="text-truncate" style="max-width: 150px;">{{ record.address }}</td>
-                            <td class="text-truncate" style="max-width: 100px;">{{ record.city }}</td>
-                            <td class="text-truncate" style="max-width: 100px;">{{ record.state }}</td>
-                            <td class="text-truncate" style="max-width: 100px;">{{ record.zipcode }}</td>
-                            <td>{{ record.created_at }}</td>
-                        </tr>
-                        {% endfor %}
-                    {% endif %}
-                </tbody>
+                  {% if records %}
+                      {% for record in records %}
+                      <tr>
+                          <td data-label="ID"><a href="{% url 'record' record.id %}" style="color:#20c997">{{ record.id }}</a></td>
+                          <td data-label="First Name">{{ record.first_name }}</td>
+                          <td data-label="Last Name">{{ record.last_name }}</td>
+                          <td data-label="Email">{{ record.email }}</td>
+                          <td data-label="Phone">{{ record.phone }}</td>
+                          <td data-label="Address">{{ record.address }}</td>
+                          <td data-label="City">{{ record.city }}</td>
+                          <td data-label="State">{{ record.state }}</td>
+                          <td data-label="Zipcode">{{ record.zipcode }}</td>
+                          <td data-label="Created At">{{ record.created_at }}</td>
+                      </tr>
+                      {% endfor %}
+                  {% endif %}
+              </tbody>
+              
             </table>
         </div>
     </div>
@@ -65,48 +65,71 @@
 </div>
 
 <style>
-/* Default table styling */
-.table-wrapper {
-    overflow-x: auto; /* Allows horizontal scrolling */
-}
 
-@media (max-width: 990px) {
-  td, th {
-    /* Further adjust padding */
-      font-size: 8px;
+  @media (max-width: 990px) {
+    table {
+        
+        table-layout: auto;
+    }
+    th, td {
+      font-size: 10px;
       font-weight:600;
+    }
+  }
+/* For screens smaller than 770px */
+@media (max-width: 770px) {
+  th, td {
+    font-size: 8px;
+    font-weight:600;
   }
 }
 
-/* Styling for smaller screens */
-@media (max-width: 770px) {
-    .table-wrapper {
-        overflow-x: scroll; /* Add horizontal scroll on smaller screens */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
-    }
-
-    table {
-        width: 100%; /* Ensure table takes up full width */
-        white-space: nowrap; /* Prevents table cells from wrapping */
-    }
-
-    td, th {
-        padding: 4px; /* Adjust padding */
-        font-size: 6px;
-        font-weight:600;
-        line-height: 1.8; 
-    }
-}
-
+/* For screens smaller than 540px */
 @media (max-width: 540px) {
-    td, th {
-      /* Further adjust padding */
-        font-size: 2.5px;
-        font-weight:600;
-      line-height: 2; 
-    }
-}
+  .table {
+      display: block;
+  }
 
+  .table thead {
+      display: none; /* Hide the table headers in the main header row */
+  }
+
+  .table tbody, .table tr {
+      display: block;
+      width: 100%;
+      border: none;
+      margin-bottom: 15px; /* Add space between records */
+  }
+
+  .table tbody tr {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ddd;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+  }
+
+  .table td {
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      padding: 8px 0;
+      border-bottom: 1px solid #ccc;
+      font-size: 14px;
+  }
+
+  .table td:last-child {
+      border-bottom: none;
+  }
+
+  .table td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: inline-block;
+      width: 40%; /* Adjust the width of the header */
+  }
+}
 
 </style>
 
