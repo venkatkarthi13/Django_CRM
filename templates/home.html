@@ -1,4 +1,119 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<div class="container mt-4">
+
+    {% if user.is_authenticated %}
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <table class="table table-hover table-bordered border-primary table-sm">
+                <thead class="table-secondary">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Zipcode</th>
+                        <th scope="col">Created at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if records %}
+                        {% for record in records %}
+                        <tr>
+                            <td><a href="{% url 'record' record.id %}" style="color:#20c997">{{ record.id }}</a></td>
+                            <td class="text-truncate" style="max-width: 100px;">{{ record.first_name }}</td>
+                            <td class="text-truncate" style="max-width: 100px;">{{ record.last_name }}</td>
+                            <td class="text-truncate" style="max-width: 150px;">{{ record.email }}</td>
+                            <td class="text-truncate" style="max-width: 100px;">{{ record.phone }}</td>
+                            <td class="text-truncate" style="max-width: 150px;">{{ record.address }}</td>
+                            <td class="text-truncate" style="max-width: 100px;">{{ record.city }}</td>
+                            <td class="text-truncate" style="max-width: 100px;">{{ record.state }}</td>
+                            <td class="text-truncate" style="max-width: 100px;">{{ record.zipcode }}</td>
+                            <td>{{ record.created_at }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Login</h1>
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+
+</div>
+
+<style>
+/* Default table styling */
+.table-wrapper {
+    overflow-x: auto; /* Allows horizontal scrolling */
+}
+
+@media (max-width: 990px) {
+  td, th {
+    /* Further adjust padding */
+      font-size: 8px;
+      font-weight:600;
+  }
+}
+
+/* Styling for smaller screens */
+@media (max-width: 770px) {
+    .table-wrapper {
+        overflow-x: scroll; /* Add horizontal scroll on smaller screens */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+    }
+
+    table {
+        width: 100%; /* Ensure table takes up full width */
+        white-space: nowrap; /* Prevents table cells from wrapping */
+    }
+
+    td, th {
+        padding: 4px; /* Adjust padding */
+        font-size: 6px;
+        font-weight:600;
+        line-height: 1.8; 
+    }
+}
+
+@media (max-width: 540px) {
+    td, th {
+      /* Further adjust padding */
+        font-size: 2.5px;
+        font-weight:600;
+      line-height: 2; 
+    }
+}
+
+
+</style>
+
+{% endblock content %}
+
+
+{% comment %} {% extends 'base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
 <table class="table table-hover table-bordered border-primary table-sm">
@@ -53,4 +168,4 @@
 </div>
 {% endif %}
 
-{% endblock content %}
+{% endblock content %} {% endcomment %}
