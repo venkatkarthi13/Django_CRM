@@ -60,7 +60,7 @@ WSGI_APPLICATION = 'CRM_App.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 ALLOWED_HOSTS = ['evolutionary-guenna-venkatprojects-7348a709.koyeb.app','django-crm-project-v3b1.onrender.com','localhost','127.0.0.1']
-
+PORT = os.environ.get('PORT', '8000') 
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
